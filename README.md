@@ -1,5 +1,6 @@
 # EX-NO-9-RSA-Algorithm
-
+# Done By: Ramya L
+# reg no: 212225040330
 ## AIM:
 To Implement RSA Encryption Algorithm in Cryptography
 
@@ -36,11 +37,56 @@ Step 5: **Security Foundation
 The security of RSA relies on the difficulty of factoring large numbers; thus, choosing sufficiently large prime numbers for \( p \) and \( q \) is crucial for security.
 
 ## Program:
+```
+# RSA Encryption and Decryption
 
+import math
 
+# Enter prime numbers
+p = int(input("Enter prime number p: "))
+q = int(input("Enter prime number q: "))
 
+# Calculate n
+n = p * q
 
+# Calculate Euler's Totient
+phi = (p - 1) * (q - 1)
+
+# Enter public exponent
+e = int(input("Enter public key e: "))
+
+# Check whether e and phi are coprime
+if math.gcd(e, phi) != 1:
+    print("Invalid e! e and phi(n) must be coprime.")
+    exit()
+
+# Calculate private key
+d = pow(e, -1, phi)
+
+print("\nRSA Key Generation")
+print("n =", n)
+print("phi(n) =", phi)
+print("Public Key  =", (e, n))
+print("Private Key =", (d, n))
+
+# Enter message
+m = int(input("\nEnter message (number less than n): "))
+
+if m >= n:
+    print("Message must be smaller than n.")
+    exit()
+
+# Encryption
+c = pow(m, e, n)
+
+# Decryption
+decrypted = pow(c, d, n)
+
+print("Encrypted message =", c)
+print("Decrypted message =", decrypted)
+```
 ## Output:
+<img width="491" height="478" alt="image" src="https://github.com/user-attachments/assets/fe5a6c36-0877-4416-b98f-d780b5a2389b" />
 
 
 
